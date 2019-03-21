@@ -12,10 +12,8 @@ function sum(a, b) { //eslint-disable-line
   //var message;
   var text = 'The sum of 4 and 7 is 11.';
   var twoNums = a + b;
-  var message = [twoNums, text]
-  // console.log(message[0]);
-  // console.log(message[1]);
-  // console.log(message);
+  var message = [twoNums, text];
+
   return message;
 }
 
@@ -37,7 +35,6 @@ function multiply(a, b) { //eslint-disable-line
   var text = 'The product of 5 and 9 is 45.';
   var product = a * b;
   var message = [product, text];
-  //console.log(product);
   return message;
 }
 
@@ -59,14 +56,26 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
-  var sumAll = a + b + c;
-  var prodAll = a * b * c;
+  var sumC = sum(a,b);
+  sumC.splice(1,1);
+  var sumAll = sum(parseInt(sumC), c);
+  sumAll.splice(1,1);
+  var sumTotal= sumAll.pop()
+
+  var prodC = multiply(a,b);
+  prodC.splice(1,1);
+  var prodAll = multiply(prodC,c);
+  prodAll.splice(1,1);
+  var prodTotal = prodAll.pop();
+
   var text1 = '4 and 7 and 5 sum to 16.';
   var text2 = 'The product of 4 and 7 and 5 is 140.';
-  var message = [sumAll, prodAll, text1, text2];
+
+  var message = [sumTotal, prodTotal, text1, text2];
+  
   return message;
-  //console.log(message);
 }
+//sumAndMultiply(3,4,5)
 
 // Here is the test for sumAndMultiply(); uncomment it to run it
  testSumAndMultiply(4,7,5);
@@ -87,14 +96,20 @@ Test this function by hand in the console to get it working, and when you think 
 var testArray = [2, 3, 4]; //eslint-disable-line
 
 function sumArray(sumArr) { //eslint-disable-line
-  var reducer = (accumulator, current) => accumulator + current;
-  // console.log(sumArr.reduce(reducer));
-  var answer = sumArr.reduce(reducer);
+  var i = 0;
+  var sumC = sum(sumArr[i], sumArr[++i]);
+  sumC.splice(1,1);
+  var sumOfAandB = sumC.pop();
+
+  var sumAll = sum(sumOfAandB, sumArr[2]);
+  sumAll.splice(1,1);
+  var sumTotal = sumAll.pop();
+
   var text = '2,3,4 was passed in as an array of numbers, and 9 is their sum.';
-  var message = [answer, text];
+  var message = [sumTotal, text];
   return message;
 }
-
+//sumArray(testArray);
 // Here is the test for sumArray(); uncomment it to run it
 
 testSumArray(testArray);
@@ -113,11 +128,19 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
-  var reducer = (accumulator, current) => accumulator * current;
-  // console.log(sumArr.reduce(reducer));
-  var answer = multArr.reduce(reducer);
+  var i = 0;
+
+  var prodC = multiply(multArr[i], multArr[++i]);
+  prodC.splice(1,1);
+  var prodOfAandB = prodC.pop();
+
+  var prodAll = multiply(prodOfAandB, multArr[2]);
+  prodAll.splice(1,1);
+  var prodTotal = prodAll.pop();
+
   var text = 'The numbers 2,3,4 have a product of 24.';
-  var message = [answer, text];
+  var message = [prodTotal, text];
+  
   return message;
 }
 //multiplyArray(testArray);
